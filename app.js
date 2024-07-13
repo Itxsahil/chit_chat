@@ -18,20 +18,20 @@ io.on('connection',onConnected)
 
 
 function onConnected(socket) {
-    console.log('New client connected', socket.id);
+    // console.log('New client connected', socket.id);
     socketConnected.add(socket);
 
     io.emit('clints-total', socketConnected.size)
 
 
     socket.on('disconnect', ()=> {
-        console.log('Client disconnected', socket.id);
+        // console.log('Client disconnected', socket.id);
         socketConnected.delete(socket);
         io.emit('clints-total', socketConnected.size)
     })
 
     socket.on('message', (data)=> {
-        console.log('Message received:', data);
+        // console.log('Message received:', data);
         socket.broadcast.emit('chat-message', data)
     })
 
